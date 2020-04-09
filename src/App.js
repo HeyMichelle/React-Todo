@@ -1,11 +1,11 @@
 import React from "react";
-import "./styles.css";
+// import "./styles.css";
 
 //Components
 import TodoList from "./components/TodoList";
 //Data
 import data from "./data";
-import { TabBarIOSItem } from "react-native";
+
 
 class App extends React.Component {
   // constructor with state
@@ -57,10 +57,10 @@ class App extends React.Component {
 	// 	});
 	// };
 	
-	// clearList = e => {
-  //   e.preventDefault();
-	// 	this.setState({data:[]})
-	// }
+	clearList = e => {
+    e.preventDefault();
+		this.setState({data:[]})
+	}
 
 	render() {
     return (
