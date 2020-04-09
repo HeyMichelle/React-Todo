@@ -1,50 +1,77 @@
-import React, { useState, Component } from 'react';
-import TodoList from './components/TodoList';
-import TodoForm from './components/TodoForm';
-// import React from 'react';
+import React from "react";
+import "./styles.css";
 
+//Components
+import TodoList from "./components/TodoList";
+//Data
+import data from "./data";
+import { TabBarIOSItem } from "react-native";
 
 class App extends React.Component {
-  // Constructor with state
-  constructor () {
-    super();
-    this.state = {
-
-    };
-  }
-
-  // class methods to update state
-    
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
-  render() {
-    return (
-      <div>
-        <h2>~ Daily To-do's ~</h2>
-        <TodoForm />
-      </div>
-    );
-  }
-}
-
-/*
-class App extends React.Component {
-
+  // constructor with state
   constructor() {
     super();
     this.state = {
-      groceries
-    }
+      data: data
+    };
+  }
 
-  render() {
+  // rule of thumb for when/how often to use preventdefault? *** on submission buttons
+  addTask = item => {
+    // console.log("First data set: ", this.state.data);
+    // e.preventDefault();
+
+    const newTask = {
+      task: item,
+      id: Date.now(),
+      completed: false
+    };
+    // this is used to generate a new item/task to the list
+    // Date.now() is a dirty way of doing/creating new id's for each item
+
+    this.setState({
+      data: [...this.state.data, newTask]
+    });
+    console.log("Second data set: ", this.state.data);
+  };
+
+  // logic for onClick/toggle
+  toggleComplete = taskId => {
+    this.setState({
+      data: this.state.data.map(data => {
+        if (taskId === data.id) {
+          return {
+            ...data,
+            completed: !data.completed
+          };
+        }
+        return data;
+      })
+    });
+  };
+
+  // clearList = e => {
+  //   e.preventDefault();
+  //   this.setState({
+	// 		data: this.state.data.filter(item => !data.completed)
+	// 	});
+	// };
+	
+	// clearList = e => {
+  //   e.preventDefault();
+	// 	this.setState({data:[]})
+	// }
+
+	render() {
     return (
-      <div>
-        <h2>~ Daily To-do's ~</h2>
-      </div>
+      <TodoList
+        data={this.state.data}
+        toggleComplete={this.toggleComplete}
+        clearList={this.clearList}
+        addTask={this.addTask}
+      />
     );
   }
 }
-*/
 
 export default App;
