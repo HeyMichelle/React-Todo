@@ -7,15 +7,19 @@ function TodoList(props) {
 	return (
 		<div className="header">
 			<h1>~ Todo List ~</h1>
+			{/* edit style for Todo List Header */}
 			<TodoForm addTask={props.addTask} />
+			{/* Go to TodoForm, edit button styles */}
 			{props.data.map(item => {
 				return (
 					<Todo key={item.id} data={item} toggleComplete={props.toggleComplete} />
 				);
 			})}
+
 			<button className="clear-btn" onClick={props.clearList}>
-				Clear List
+				Clear Completed
 			</button>
+			{/* edit button style for .clear-btn */}
 		</div>
 	);
 }
@@ -23,4 +27,4 @@ function TodoList(props) {
 // in TODO onclick is the same as toggleComplete (renaming props)
 
 export default TodoList;
-// AKA the todolist wrapper
+//  todolist wrapper

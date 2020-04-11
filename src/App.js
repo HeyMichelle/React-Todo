@@ -50,22 +50,22 @@ class App extends React.Component {
     });
   };
 
-  // clearList = e => {
-  //   e.preventDefault();
-  //   this.setState({
-	// 		data: this.state.data.filter(item => !data.completed)
-	// 	});
-	// };
-	
-	clearList = e => {
+  clearList = e => {
     e.preventDefault();
-		this.setState({data:[]})
-	}
+    this.setState({
+			data: this.state.data.filter(item => !item.completed)
+		});
+	};
+	
+	// clearList = e => {
+  //   e.preventDefault();
+	// 	this.setState({data:[]})
+	// }
 
 	render() {
     return (
       <TodoList
-        data={this.state.data}
+        data={this.state.data} for 
         toggleComplete={this.toggleComplete}
         clearList={this.clearList}
         addTask={this.addTask}

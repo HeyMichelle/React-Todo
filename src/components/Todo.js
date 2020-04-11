@@ -7,7 +7,7 @@ function Todo(props) {
 		<div>
 			<h2
 				className={`data${props.data.completed ? " completed" : ""}`} //should we use null?
-				onClick={() => props.toggleComplete(props.data.id)}
+				onClick={() => props.toggleComplete(props.data.id)} // why an arrow function?
 			>
 				{props.data.task}
 			</h2>

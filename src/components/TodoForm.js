@@ -26,8 +26,8 @@ class TodoForm extends React.Component {
 
   render() {
     // console.log("state prop", this.state.userInput);
-
-    return (
+    //edit all styling, make class names
+    return ( 
       <form onSubmit={this.submitTask}>
         <label htmlFor="addTask">Add task: </label>
         <input
