@@ -1,14 +1,75 @@
-import React from 'react';
+import React from "react";
+// import "./styles.css";
+
+//Components
+import TodoList from "./components/TodoList";
+//Data
+import data from "./data";
+
 
 class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
-  render() {
+  // constructor with state
+  constructor() {
+    super();
+    this.state = {
+      data: data
+    };
+  }
+
+  // rule of thumb for when/how often to use preventdefault? *** on submission buttons
+  addTask = item => {
+    // console.log("First data set: ", this.state.data);
+    // e.preventDefault();
+
+    const newTask = {
+      task: item,
+      id: Date.now(),
+      completed: false
+    };
+    // this is used to generate a new item/task to the list
+    // Date.now() is a dirty way of doing/creating new id's for each item
+
+    this.setState({
+      data: [...this.state.data, newTask]
+    });
+    console.log("Second data set: ", this.state.data);
+  };
+
+  // logic for onClick/toggle
+  toggleComplete = taskId => {
+    this.setState({
+      data: this.state.data.map(data => {
+        if (taskId === data.id) {
+          return {
+            ...data,
+            completed: !data.completed
+          };
+        }
+        return data;
+      })
+    });
+  };
+
+  clearList = e => {
+    e.preventDefault();
+    this.setState({
+			data: this.state.data.filter(item => !item.completed)
+		});
+	};
+	
+	// clearList = e => {
+  //   e.preventDefault();
+	// 	this.setState({data:[]})
+	// }
+
+	render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
-      </div>
+      <TodoList
+        data={this.state.data} for 
+        toggleComplete={this.toggleComplete}
+        clearList={this.clearList}
+        addTask={this.addTask}
+      />
     );
   }
 }
